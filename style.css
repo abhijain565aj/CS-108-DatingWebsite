@@ -999,6 +999,14 @@ input[name="secret_answer"] {
     box-shadow: 0 0 10px rgba(255, 143, 163, 0.5);
 }
 
+.bordered_gender {
+    background-color: var(--c10);
+}
+
+.match_type {
+    padding: 7px 0px 7px 0px;
+}
+
 .user_icon,
 .filter_icon {
     position: absolute;
@@ -1175,6 +1183,7 @@ input[name="secret_answer"] {
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
 
 
 /* change.html */

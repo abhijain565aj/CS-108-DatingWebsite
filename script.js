@@ -320,7 +320,7 @@ if (registerNowSubmit) {
 
 function dating() {
     const IITB_roll_no_dt = document.getElementById('IITB_roll_no_dt').value;
-    const student_name_dt = document.getElementById('student_name_dt').value;
+    const student_name_dt = document.getElementById('student_name_dt').value; set
     const email = document.getElementById('email').value;
     const year_of_study_dt = document.getElementById('year_of_study_dt').value;
     const age_dt = document.getElementById('age_dt').value;
@@ -330,6 +330,17 @@ function dating() {
         if (radio.checked) {
             gender = radio.value;
             break;
+        }
+    }
+    if (!localStorage.getItem('match_type')) {
+        if (gender === 'Male') {
+            document.querySelectorAll('.options_gender')[2].click();
+        }
+        else if (gender === 'Female') {
+            document.querySelectorAll('.options_gender')[1].click();
+        }
+        else {
+            document.querySelectorAll('.options_gender')[0].click();
         }
     }
     const hobbies = document.getElementsByName('hobby')
@@ -402,7 +413,6 @@ function dating() {
         alert('Please upload a photo');
     }
     else {
-
         const photoInput = document.getElementById('photo_dt').files[0];
         const formData = new FormData();
         formData.append('file', photoInput);
@@ -582,9 +592,11 @@ if (document.URL.includes('dating.html')) {
         }
     }
     )
+    //clicking on the photo means click on checkbox
     document.querySelectorAll('.s2lv2').forEach((element) => {
         element.addEventListener('click', () => {
-            element.childNodes[1].click();
+            c = element.childNodes[1].childNodes[1];
+            c.checked = !c.checked;
         });
     });
     document.getElementById('photo_dt').addEventListener('change', function (event) {
@@ -897,7 +909,7 @@ if (document.URL.includes('scroll_or_swipe.html')) {
                 var C_card = document.getElementById('C_card');
                 var isMouseOverC = false;
 
-                var hoverTimeout;
+                var hoverTimeoutC;
                 C_card.addEventListener('mouseover', function () {
                     isMouseOverC = true;
                     hoverTimeoutC = setTimeout(function () {
@@ -942,7 +954,6 @@ if (document.URL.includes('scroll_or_swipe.html')) {
                 filter[c.name].push(c.value);
             }
         })
-        let newAges = [];
         for (let age of filter.age) {
             if (age.includes('-')) {
                 a = age.split('-');
@@ -973,11 +984,28 @@ if (document.URL.includes('scroll_or_swipe.html')) {
 
 function matching_score_and_update() {
     let bestMatch = null;
+    gender = currentStudentData.Gender;
+    if (!localStorage.getItem('match_type')) {
+        if (gender === 'Male') {
+            document.querySelectorAll('.options_gender')[2].click();
+        }
+        else if (gender === 'Female') {
+            document.querySelectorAll('.options_gender')[1].click();
+        }
+        else {
+            document.querySelectorAll('.options_gender')[0].click();
+        }
+    }
+    console.log(localStorage)
     fetch('students.json')
         .then(response => response.json())
         .then(json => {
             let maxScore = 0;
             for (let student of json) {
+                if (localStorage.getItem('match_type') === 'All') {
+                } else if (localStorage.getItem('match_type') != student.Gender) {
+                    continue;
+                }
                 let score = 0;
                 let score_list = [];
                 // yos_max_score = 10
@@ -987,17 +1015,6 @@ function matching_score_and_update() {
                 score += Math.max(10 - (student.Age - currentStudentData.Age) * 2, 0);
                 score_list.push(score);
 
-                //Gender_Score
-                if (student.Gender == 'Male' && currentStudentData.Gender == 'Female') {
-                    score += 25;
-                }
-                else if (student.Gender == 'Female' && currentStudentData.Gender == 'Male') {
-                    score += 25;
-                }
-                else if (student.Gender == 'other' && currentStudentData.Gender == 'other') {
-                    score += 10;
-                }
-                score_list.push(score);
                 //Interests_Score
                 let n1 = currentStudentData.Interests.length;
                 let n2 = student.Interests.length;
@@ -1036,7 +1053,8 @@ function matching_score_and_update() {
             return bestMatch;
         })
         .then(bestMatch => {
-            // console.log(bestMatch)
+            console.log(bestMatch)
+            console.log(currentStudentData)
             normal_details = document.getElementsByClassName('normal_details')[0]
             normal_details.innerHTML = `
                     <div class="info_match">
@@ -1094,6 +1112,25 @@ if (document.URL.includes('match.html')) {
             })
     }
 }
+function matchTypeCheck() {
+    document.querySelectorAll('.options_gender').forEach(option => {
+        option.addEventListener('click', () => {
+            localStorage.setItem('match_type', option.id);
+            document.querySelectorAll('.options_gender').forEach(o => {
+                o.classList.remove('bordered_gender');
+            });
+            option.classList.add('bordered_gender');
+        });
+    })
+    if (localStorage.getItem('match_type')) {
+        document.querySelectorAll('.options_gender').forEach(option => {
+            if (option.id == localStorage.getItem('match_type')) {
+                option.click();
+            }
+        });
+    }
+}
+
 const usernameDiv = document.getElementById('usernameDiv');
 if (usernameDiv) {
     if (!localStorage.getItem('current_user')) {
@@ -1115,6 +1152,7 @@ if (usernameDiv) {
         localStorage.removeItem('registration');
         localStorage.removeItem('change');
         localStorage.removeItem('filter');
+        localStorage.removeItem('match_type');
         localStorage.setItem('filesCorrect', false);
         window.location.href = 'login.html';
     });
@@ -1137,7 +1175,9 @@ if (usernameDiv) {
         localStorage.setItem('change', 'password');
         window.location.href = 'change.html';
     });
+    matchTypeCheck();
 }
+
 if (document.URL.includes('change.html')) {
     document.addEventListener('DOMContentLoaded', function () {
         if (localStorage.getItem('change') == 'username') {
@@ -1203,6 +1243,7 @@ if (document.URL.includes('change.html')) {
                         localStorage.removeItem('current_user');
                         localStorage.removeItem('registration');
                         localStorage.removeItem('change');
+                        localStorage.removeItem('match_type');
                         localStorage.removeItem('filter');
                         window.location.href = 'login.html';
                     }
