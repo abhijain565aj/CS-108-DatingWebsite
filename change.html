@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <title>Looking for a date ?</title>
+</head>
+
+<body class="body_dating body_change">
+    <div class="user_icon">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABjElEQVR4nO2Zz0oCURSHP4xcBa2Dcteilymx1FeIiNr0Dv2xXdA+EluUb5C9hqbZMggpKFsUoTcGThvBEufMnFvcD34gMuDvk3PHex0IBAKaZIEyUANawJukJe+V5BovWQe6gPsld0ABj5gBjicoPpoKkMEDpin/nUMfxsbFTN6qfFbmOa7AvdXCLiuUd5KihcCFokDVQqCtKNCyEOgrCvT/usCLhcCtokDTQqCmKHBuIVBSFNiwEJgFOgrlu5Y71IKCwBrGVGKUP8ADoi3x0ZQ70QwekZ9wTXR8GJufFnZR9jZN+bHry+uq3G2iawKBQMrkgDrwqrh9GJfoM66AJc3yzykUdyN50pKoG5R3kksNgTTGxiV50HHGic3AsPwgfn3oGQr0NAQahgINDYFtQ4EdDYE54MGg/CMwjxKrwDDF8sMkDvq7KQrskeA/0q8J33XyJMyinK4+FYt/AGfAAimSk8P8JA/2xqUN7MuXYsoKsAWcAjciFY3Du6QnT3OugRNgE1i2Lh0I8A/4AsVC6ighJMgVAAAAAElFTkSuQmCC"
+            style="height:25px;">
+    </div>
+    <div class="side_bar">
+        <div id="usernameDiv">
+        </div>
+        <div class="special_menu" id="find_a_match_menu">Find a Match <img src="Images/match_side_menu.png"
+                style="height:35px; padding-left:5px"></div>
+        <div class="special_menu" id="scroll_or_swipe_menu">Swipe the Profiles <img src="Images/swipe_side_menu.png"
+                style="height:35px; padding-left:5px"> </div>
+        <div id="change_details">Edit Personal Details</div>
+        <div id="change_username">Change Username</div>
+        <div id="change_password">Change Password</div>
+        <div id="logout" id="logout"><img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABNklEQVR4nO3aMU4DMRCF4R8KWiRofRHEwWi3gcBNOEEaxAEoAhR0tCzXcGTJkdAqGzyJgt4MfpJLS/NpdtdrywBnwAPwDWSRMQKLWltz7gUKnxt3FshYJ12hk+sfnWnORq+WbK2rQ46c3Dsiltw7IpabKB0pGQgCMaVDjphHYAmce+/Iqtb0YsEoQhLwWesqqAuvkL0wqpAp5vU3jDLEhFGHbMNc4hTShPECmWLephhPkJ0Yb5BZzCGQE+Bd4NhodSjktL547iFhHi2pz3B2BEm71hIvkBRhQUwt/1vqkNT6O68MSZY9iSokRdhYpShb3Y8ohw/PwFOE46C90iF/kCFCRwZrXaqQ3CFiyb0jYsn/tiNjnVAusqhdqvmyTFoIHOfMjVsLpFzuKphNZxRG6URBNF88WwOccZGxk5w4qAAAAABJRU5ErkJggg=="
+                style="height: 25px; padding-right: 5px;">Logout</div>
+
+    </div>
+    <div class="dating_background">
+    </div>
+    <div class="info_box">
+        <div class="changes" id="change_username_ch">
+            <div class="change_heading">Change Username</div>
+            <div>
+                <input type="text" name="new_username" id="new_username" class="change_input"
+                    placeholder="Enter new username">
+            </div>
+            <div>
+                <input type="submit" id="submitUsernameCh" class="change_button" value="Change Username">
+            </div>
+        </div>
+        <div class="changes" id="change_password_ch">
+            <div class="change_heading">Change Password</div>
+            <div>
+                <input type="password" name="old_password" id="old_password_change" class="change_input"
+                    placeholder="Old Password">
+            </div>
+            <div>
+                <input type="password" name="new_password" id="new_password_change" class="change_input"
+                    placeholder="New Password">
+            </div>
+            <div>
+                <input type="password" name="confirm_new_password" id="confirm_new_password_change" class="change_input"
+                    placeholder="Confirm New Password">
+            </div>
+            <div>
+                <input type="submit" id="submitPasswordCh" class="change_button" value="Change Password">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>

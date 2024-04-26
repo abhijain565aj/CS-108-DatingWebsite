@@ -1,0 +1,219 @@
+// Buffer to store the uploaded file data
+        // let fileBuffer = Buffer.from([]);
+        // let newFileName = '';
+
+        // // // Handle data chunks from the request
+        // // req.on('data', (chunk) => {
+        // //     fileBuffer = Buffer.concat([fileBuffer, chunk]);
+        // // });
+        // // Handle data chunks from the request
+        // req.on('data', (chunk) => {
+        //     if (req.headers['content-type'] && req.headers['content-type'].startsWith('multipart/form-data')) {
+        //         const match = chunk.toString().match(/name="([^"]+)"/);
+        //         console.log(match);
+        //         if (match && match[1] === 'name') {
+        //             // Extract the new file name from the request
+        //             newFileName = chunk.toString().split('\r\n')[4]; // Assuming the 'name' field is the third field in FormData
+        //             console.log('New file name:', newFileName);
+        //             newFileName = newFileName.replace(/ /g, '_').toLowerCase(); // Replace spaces with underscores and convert to lowercase
+        //             console.log('New file name:', newFileName);
+        //         }
+        //     }
+        //     fileBuffer = Buffer.concat([fileBuffer, chunk]);
+        // });
+
+        // // Handle end of request data
+        // req.on('end', () => {
+
+        //     // Get the original file name from the request headers
+        //     const originalFileName = req.headers['x-filename'];
+        //     console.log('Original file name:', originalFileName);
+
+        //     if (!originalFileName) {
+        //         console.error('Original file name not provided');
+        //         return res.end('Error: Original file name not provided.');
+        //     }
+
+        //     // Extract file extension from the original file name
+        //     const fileExtension = path.extname(originalFileName);
+        //     console.log('File extension:', fileExtension);
+
+        //     // // Generate a new file name with the same extension
+        //     const fileCompleteName = newFileName + fileExtension;
+        //     console.log('File complete name:', fileCompleteName);
+
+
+        //     // Define the destination directory for the uploaded file
+        //     const destinationDir = path.join(__dirname, 'photos');
+
+        //     // Create the destination directory if it doesn't exist
+        //     // if (!fs.existsSync(destinationDir)) {
+        //     //     fs.mkdirSync(destinationDir, { recursive: true });
+        //     // }
+
+        //     // Build the path for the new file
+        //     const filePath = path.join(destinationDir, fileCompleteName);
+        //     // const originalFilePath = path.join(destinationDir, originalFileName);
+        //     // fs.writeFile(originalFilePath, fileBuffer, (err) => {
+        //     //     if (err) {
+        //     //         console.error(err);
+        //     //         return res.end('Error saving file.');
+        //     //     }
+        //     //     res.end('File uploaded and saved successfully.');
+
+        //     // });
+        //     // Write the file to the destination directory
+        //     fs.writeFile(filePath, fileBuffer, (err) => {
+        //         if (err) {
+        //             console.error(err);
+        //             return res.end('Error saving file.');
+        //         }
+
+        //         res.end('File uploaded and saved successfully.');
+        //     });
+        // });
+        // // Handle end of request data
+        // req.on('end', () => {
+        //     // If no data was received
+        //     if (fileBuffer.length === 0) {
+        //         return res.end('No file uploaded.');
+        //     }
+
+        //     // Generate a new name for the file (e.g., timestamp + original name)
+        //     const timestamp = Date.now();
+        //     const fileName = `${ timestamp }_uploaded_file`;
+
+        //     // Define the destination directory for the uploaded photo
+        //     const destinationDir = path.join(__dirname, 'photos');
+
+        //     // Create the destination directory if it doesn't exist
+        //     if (!fs.existsSync(destinationDir)) {
+        //         fs.mkdirSync(destinationDir, { recursive: true });
+        //     }
+
+        //     // Build the path for the new file
+        //     const filePath = path.join(destinationDir, fileName);
+
+        //     // Write the file to the destination directory
+        //     fs.writeFile(filePath, fileBuffer, (err) => {
+        //         if (err) {
+        //             console.error(err);
+        //             return res.end('Error saving file.');
+        //         }
+        //         res.end('File uploaded and saved successfully.');
+        //     });
+        // });
+
+
+
+
+
+
+        else if (req.method === 'POST' && req.url === '/upload') {
+        console.log('Uploading data and photo...');
+        let data = Buffer.alloc(0);
+        req.on('data', chunk => {
+            data = Buffer.concat([data, chunk]);
+        });
+
+        req.on('end', () => {
+            const boundary = req.headers['content-type'].split('; ')[1].split('=')[1];
+            const parts = data.toString().split(`--${boundary} `);
+            console.log(parts);
+            const formData = {};
+            parts.forEach(part => {
+                if (part.includes('filename')) {
+                    const imageData = part.split('\r\n\r\n')[1];
+                    const fileName = part.match(/filename="(.+?)"/)[1];
+                    const filePath = path.join(__dirname, 'photos', fileName);
+                    fs.writeFile(filePath, imageData, 'base64', err => {
+                        if (err) {
+                            console.error('Error saving photo:', err);
+                        }
+                        formData.photo = `photos / ${fileName} `;
+                    });
+                } else {
+                    const nameMatch = part.match(/name="(.+?)"/);
+                    if (nameMatch) {
+                        const name = nameMatch[1];
+                        const value = part.split('\r\n\r\n')[1].trim();
+                        formData[name] = value;
+                    }
+                }
+            });
+            console.log(formData);
+            // fs.readFile('students.json', (err, data) => {
+            //     if (err) {
+            //         console.log(err);
+            //     } else {
+            //         const students = JSON.parse(data);
+            //         const jsonData = JSON.stringify(formData, null, 2);
+            //         students.push(jsonData);
+            //         fs.writeFile('students.json', JSON.stringify(students), (err) => {
+            //             if (err) {
+            //                 res.end(JSON.stringify({ message: 'Data and photo not uploaded successfully' }));
+            //                 console.error('Error saving JSON file:', err);
+            //             } else {
+            //                 res.end(JSON.stringify({ message: 'Data and photo uploaded successfully' }));
+            //             }
+            //         });
+            //     }
+            // });
+            // Save additional form data to a JSON file
+            const jsonData = JSON.stringify(formData, null, 2);
+            const jsonFilePath = path.join(__dirname, 'students.json');
+            fs.writeFile(jsonFilePath, jsonData, err => {
+                if (err) {
+                    console.error('Error saving JSON file:', err);
+                }
+            });
+
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Data and photo uploaded successfully' }));
+        });
+    }
+
+
+
+
+
+            /*
+    var formData = new FormData();
+    // Append photo file
+    var photoInput = document.getElementById('photo_dt');
+    formData.append('photo', photoInput.files[0]);
+    //sample students.json
+    {
+        "IITB Roll Number": "2023001",
+        "Name": "Aryan Sharma",
+        "Year of Study": "3rd",
+        "Age": 21,
+        "Gender": "Male",
+        "Interests": ["Traveling", "Music"],
+        "Hobbies": ["Reading", "Playing musical instruments"],
+        "Email": "aryan@example.com",
+        "Photo": "photos/aryan_sharma.png"
+    }
+    formData.append('IITB Roll Number', IITB_roll_no_dt);
+    formData.append('Name', student_name_dt);
+    formData.append('Year of Study', year_of_study_dt);
+    formData.append('Age', age_dt);
+    formData.append('Gender', gender);
+    formData.append('Interests', selected_interests);
+    formData.append('Hobbies', selected_hobbies);
+    formData.append('Email', email);
+    console.log(formData)
+    //Old Error: You're setting the 'Content-Type' to 'application/json', but you're sending form data, not JSON. When you're sending form data, you should not manually set the 'Content-Type' header. The browser will automatically set it to 'multipart/form-data' and include the necessary boundary parameter.
+    fetch('/upload', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        })
+        .catch(error => {
+            alert('An error occurred');
+            console.error('Error:', error);
+        });
+    */
