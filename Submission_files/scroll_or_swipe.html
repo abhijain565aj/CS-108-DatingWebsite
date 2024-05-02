@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <title>Looking for a date ?</title>
+</head>
+
+<body class="scroll_or_swipe_body">
+    <div class="user_icon">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABjElEQVR4nO2Zz0oCURSHP4xcBa2Dcteilymx1FeIiNr0Dv2xXdA+EluUb5C9hqbZMggpKFsUoTcGThvBEufMnFvcD34gMuDvk3PHex0IBAKaZIEyUANawJukJe+V5BovWQe6gPsld0ABj5gBjicoPpoKkMEDpin/nUMfxsbFTN6qfFbmOa7AvdXCLiuUd5KihcCFokDVQqCtKNCyEOgrCvT/usCLhcCtokDTQqCmKHBuIVBSFNiwEJgFOgrlu5Y71IKCwBrGVGKUP8ADoi3x0ZQ70QwekZ9wTXR8GJufFnZR9jZN+bHry+uq3G2iawKBQMrkgDrwqrh9GJfoM66AJc3yzykUdyN50pKoG5R3kksNgTTGxiV50HHGic3AsPwgfn3oGQr0NAQahgINDYFtQ4EdDYE54MGg/CMwjxKrwDDF8sMkDvq7KQrskeA/0q8J33XyJMyinK4+FYt/AGfAAimSk8P8JA/2xqUN7MuXYsoKsAWcAjciFY3Du6QnT3OugRNgE1i2Lh0I8A/4AsVC6ighJMgVAAAAAElFTkSuQmCC"
+            style="height:25px;">
+    </div>
+
+    <div class="side_bar">
+        <div id="usernameDiv">
+        </div>
+        <div class="special_menu" id="scroll_or_swipe_menu">Swipe the Profiles<img src="Images/swipe_side_menu.png"
+                style="height:35px; padding-left:5px"> </div>
+        <div class="special_menu" id="find_a_match_menu">Find a Match <img src="Images/match_side_menu.png"
+                style="height:35px; padding-left:5px"></div>
+        <div class="choose_type">
+            Choose your Match Type
+        </div>
+        <div class="match_type">
+            <div class="options_gender bordered_gender" id="All">
+                <img src="Images/male+female.png" style="height:30px;">
+            </div>
+            <div class="options_gender" id="Male">
+                <img src="Images/male.png" style="height:25px;">
+            </div>
+            <div class="options_gender" id="Female">
+                <img src="Images/female.png" style="height:25px;">
+            </div>
+        </div>
+        <div id="change_details">Edit Personal Details</div>
+        <div id="change_username">Change Username</div>
+        <div id="change_password">Change Password</div>
+        <div id="logout" id="logout"><img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABNklEQVR4nO3aMU4DMRCF4R8KWiRofRHEwWi3gcBNOEEaxAEoAhR0tCzXcGTJkdAqGzyJgt4MfpJLS/NpdtdrywBnwAPwDWSRMQKLWltz7gUKnxt3FshYJ12hk+sfnWnORq+WbK2rQ46c3Dsiltw7IpabKB0pGQgCMaVDjphHYAmce+/Iqtb0YsEoQhLwWesqqAuvkL0wqpAp5vU3jDLEhFGHbMNc4hTShPECmWLephhPkJ0Yb5BZzCGQE+Bd4NhodSjktL547iFhHi2pz3B2BEm71hIvkBRhQUwt/1vqkNT6O68MSZY9iSokRdhYpShb3Y8ohw/PwFOE46C90iF/kCFCRwZrXaqQ3CFiyb0jYsn/tiNjnVAusqhdqvmyTFoIHOfMjVsLpFzuKphNZxRG6URBNF88WwOccZGxk5w4qAAAAABJRU5ErkJggg=="
+                style="height: 25px; padding-right: 5px;">Logout</div>
+
+    </div>
+    <div class="filter_icon">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABVElEQVR4nO3ZLUhDURTA8b8fKA8GFsFgMCysGCyWJZNJDTabzWY0i6tGm81mMohJEAx+YLcYDIJBEAQRlaE7MniCDN/ee9t79547zg9O3OP8d9/KLhjdbgAJZK67hUhgk8j3YmIhHa4UfMuScdq7JpoEbhUsKSlzB0yRYhq4V7CsJMwDMENGVeBRwdLSMU9AjZxmgWcFy0s8L8AcPZoHXhVEvAF1+lSPH+Qr4h1YoCCLwKeHiCawRMFWgS+HEd/AGiVZB1oOIlrABiXbdBCyhSONEiN2cGy3hIg9PBgC9guMOACG8WQEOCwg4ggYxbMx4KSPiFNgHCUi4LyHiEuggjITwFmOiIv4M8ZkkPc3opZYiDJiJ6KM2IkoI3YiyoidiDJiJ6KM2IkEfr2tVgRsAx+hh/y98ToehJBfyyn3kUGJurxuQar+87oFbSW+J2//r2UG1g8pAoSonZfhywAAAABJRU5ErkJggg=="
+            style="height:25px">
+    </div>
+    <div class="filter_container" id="filter_container">
+        <div class="filterlv1">
+            <div class="filterlv2">
+                <div class="filter_option" id="gender_filter">
+                    <H3>Gender</H3>
+                    <label class="container filter_check">Male
+                        <input type="checkbox" id="genderMale" name="gender" value="Male">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container filter_check">Female
+                        <input type="checkbox" id="genderFemale" name="gender" value="Female">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container filter_check">Other
+                        <input type="checkbox" id="genderOther" name="gender" value="Other">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="filter_option" id="year_of_study_filter">
+                    <H3>Year of Study</H3>
+                    <label class="container filter_check">1st Year
+                        <input type="checkbox" id="yos_1st" name="year_of_study" value="1st">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container filter_check">2nd Year
+                        <input type="checkbox" id="yos_2nd" name="year_of_study" value="2nd">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container filter_check">3rd Year
+                        <input type="checkbox" id="yos_3rd" name="year_of_study" value="3rd">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container filter_check">4th Year
+                        <input type="checkbox" id="yos_4th" name="year_of_study" value="4th">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="filter_option" id="age_filter">
+                <H3>Age</H3>
+                <label class="container filter_check">Any Age
+                    <input type="checkbox" id="age_AnyAge" name="age" value="AnyAge">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">&lt;= 15
+                    <input type="checkbox" id="age_lt15" name="age" value="lt15">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">16-17
+                    <input type="checkbox" id="age_16-17" name="age" value="16-17">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">18-19
+                    <input type="checkbox" id="age_18-19" name="age" value="18-19">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">20-21
+                    <input type="checkbox" id="age_20-21" name="age" value="20-21">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">22-23
+                    <input type="checkbox" id="age_22-23" name="age" value="22-23">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">24-25
+                    <input type="checkbox" id="age_24-25" name="age" value="24-25">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">&gt;= 26
+                    <input type="checkbox" id="age_gt26" name="age" value="gt26">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="filterlv1">
+            <div class="filter_option" id="hobbies_filter">
+                <H3>Hobbies</H3>
+                <label class="container filter_check">Reading
+                    <input type="checkbox" id="reading" name="hobby" value="Reading">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Cooking
+                    <input type="checkbox" id="cooking" name="hobby" value="Cooking">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Coding
+                    <input type="checkbox" id="coding" name="hobby" value="Coding">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Gardening
+                    <input type="checkbox" id="gardening" name="hobby" value="Gardening">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Painting
+                    <input type="checkbox" id="painting" name="hobby" value="Painting">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Watching YouTube/Instagram
+                    <input type="checkbox" id="watching_youtube/instagram" name="hobby"
+                        value="Watching YouTube/Instagram">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Playing musical instruments
+                    <input type="checkbox" id="playing_musical_instruments" name="hobby"
+                        value="Playing musical instruments">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Photography
+                    <input type="checkbox" id="photography" name="hobby" value="Photography">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="filter_option" id="interests_filter">
+                <H3>Interests</H3>
+                <label class="container filter_check">Traveling
+                    <input type="checkbox" id="traveling" name="interest" value="Traveling">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Sports
+                    <input type="checkbox" id="sports" name="interest" value="Sports">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Movies
+                    <input type="checkbox" id="movies" name="interest" value="Movies">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Music
+                    <input type="checkbox" id="music" name="interest" value="Music">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Literature
+                    <input type="checkbox" id="literature" name="interest" value="Literature">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Technology
+                    <input type="checkbox" id="technology" name="interest" value="Technology">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Fashion
+                    <input type="checkbox" id="fashion" name="interest" value="Fashion">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container filter_check">Art
+                    <input type="checkbox" id="art" name="interest" value="Art">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="buttons_filter">
+            <button class="apply_filter" id="apply_filter">Apply Filters</button>
+            <button class="clear_filter" id="clear_filter">Clear Filters</button>
+        </div>
+    </div>
+    <div id="scroll_or_swipe_container">
+        <div class="card empty_card">
+        </div>
+        <div class="card find_a_match">
+            <div class="photo_container">
+                <img src="Images/right_match_sos.jpg">
+                <div class="square"></div>
+            </div>
+            <div class="find_match_button" id="find_a_match_button">
+                Find Your Right Match
+                <img src="Images/match_side_menu.png">
+            </div>
+            Scroll/Swipe to look through profiles
+        </div>
+        <!-- <div class="card">
+            <div class="photo_container">
+                <img src="photos/aditi_singh.png">
+                <div class="square"></div>
+                <div class="like_button liked">
+                    &hearts;
+                </div>
+                <div class="like_button like_count">
+                </div>
+            </div>
+
+            <div class="details">
+                <h1>Aditi Singh</h1>
+                <h2>23 yrs & in 1st Year</h2>
+            </div>
+            <div class="view_more_button">
+                view more
+            </div>
+            <div class="more_details">
+                <p>Name: Aditi Singh</p>
+                <p>Age: 19</p>
+                <p>Gender: Female</p>
+                <p>Year of Study: 2nd</p>
+                <p>Interests: Sports, Music</p>
+                <p>Hobbies: Reading, Cooking, Coding</p>
+                <p>Email: aditisingh@aisehi.com</p>
+            </div>
+        </div>-->
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>

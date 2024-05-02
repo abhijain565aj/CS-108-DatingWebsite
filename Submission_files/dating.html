@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <title>Looking for a date ?</title>
+</head>
+
+<body class="body_dating">
+    <div class="user_icon">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABjElEQVR4nO2Zz0oCURSHP4xcBa2Dcteilymx1FeIiNr0Dv2xXdA+EluUb5C9hqbZMggpKFsUoTcGThvBEufMnFvcD34gMuDvk3PHex0IBAKaZIEyUANawJukJe+V5BovWQe6gPsld0ABj5gBjicoPpoKkMEDpin/nUMfxsbFTN6qfFbmOa7AvdXCLiuUd5KihcCFokDVQqCtKNCyEOgrCvT/usCLhcCtokDTQqCmKHBuIVBSFNiwEJgFOgrlu5Y71IKCwBrGVGKUP8ADoi3x0ZQ70QwekZ9wTXR8GJufFnZR9jZN+bHry+uq3G2iawKBQMrkgDrwqrh9GJfoM66AJc3yzykUdyN50pKoG5R3kksNgTTGxiV50HHGic3AsPwgfn3oGQr0NAQahgINDYFtQ4EdDYE54MGg/CMwjxKrwDDF8sMkDvq7KQrskeA/0q8J33XyJMyinK4+FYt/AGfAAimSk8P8JA/2xqUN7MuXYsoKsAWcAjciFY3Du6QnT3OugRNgE1i2Lh0I8A/4AsVC6ighJMgVAAAAAElFTkSuQmCC"
+            style="height:25px;">
+    </div>
+    <div class="side_bar">
+        <div id="usernameDiv">
+        </div>
+        <div class="special_menu" id="scroll_or_swipe_menu">Swipe the Profiles <img src="Images/swipe_side_menu.png"
+                style="height:35px; padding-left:5px"></div>
+        <div class="special_menu" id="find_a_match_menu">Find a Match <img src="Images/match_side_menu.png"
+                style="height:35px; padding-left:5px"></div>
+        <div class="choose_type">
+            Choose your Match Type
+        </div>
+        <div class="match_type">
+            <div class="options_gender bordered_gender" id="All">
+                <img src="Images/male+female.png" style="height:30px;">
+            </div>
+            <div class="options_gender" id="Male">
+                <img src="Images/male.png" style="height:25px;">
+            </div>
+            <div class="options_gender" id="Female">
+                <img src="Images/female.png" style="height:25px;">
+            </div>
+        </div>
+        <div id="change_details">Edit Personal Details</div>
+        <div id="change_username">Change Username</div>
+        <div id="change_password">Change Password</div>
+        <div id="logout" id="logout"><img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABNklEQVR4nO3aMU4DMRCF4R8KWiRofRHEwWi3gcBNOEEaxAEoAhR0tCzXcGTJkdAqGzyJgt4MfpJLS/NpdtdrywBnwAPwDWSRMQKLWltz7gUKnxt3FshYJ12hk+sfnWnORq+WbK2rQ46c3Dsiltw7IpabKB0pGQgCMaVDjphHYAmce+/Iqtb0YsEoQhLwWesqqAuvkL0wqpAp5vU3jDLEhFGHbMNc4hTShPECmWLephhPkJ0Yb5BZzCGQE+Bd4NhodSjktL547iFhHi2pz3B2BEm71hIvkBRhQUwt/1vqkNT6O68MSZY9iSokRdhYpShb3Y8ohw/PwFOE46C90iF/kCFCRwZrXaqQ3CFiyb0jYsn/tiNjnVAusqhdqvmyTFoIHOfMjVsLpFzuKphNZxRG6URBNF88WwOccZGxk5w4qAAAAABJRU5ErkJggg=="
+                style="height: 25px; padding-right: 5px;">Logout</div>
+
+    </div>
+    <div class="dating_background">
+    </div>
+    <div class="info_box">
+        <div class="steps" id="step_1">
+            <div class="lv1">
+                <input type="text" class="dating_input" name="IITB_roll_no" placeholder="IITB Roll Number"
+                    id="IITB_roll_no_dt">
+                <input type="text" class="dating_input" name="student_name" placeholder="Your Name"
+                    id="student_name_dt">
+            </div>
+            <div class="lv1">
+                <!-- <input type="number" class="dating_input" name="year_of_study" placeholder="Year of Study" id="year_of_study_dt"> -->
+                <!-- dropdown for year of study with options 1st, 2nd, 4rd, 4th; -->
+                <select class="dating_input" name="year_of_study" id="year_of_study_dt" placeholder="Year of Study">
+                    <option value="1st">1st</option>
+                    <option value="2nd">2nd</option>
+                    <option value="3rd">3rd</option>
+                    <option value="4th">4th</option>
+                </select>
+                <input type="number" class="dating_input" name="age" placeholder="Age" id="age_dt">
+                <div class="radio_gender">
+                    <span>
+                        <input type="radio" class="O_gender" name="gender" id="male" value="Male">
+                        <label for="male">Male</label>
+                    </span>
+                    <span>
+                        <input type="radio" class="O_gender" name="gender" id="female" value="Female">
+                        <label for="female">Female</label>
+                    </span>
+                    <span>
+                        <input type="radio" class="O_gender" name="gender" id="other" value="Other">
+                        <label for="other">Other</label>
+                    </span>
+                </div>
+            </div>
+            <div class="lv1">
+                <input type="email" class="dating_input" name="email" id="email" placeholder="Email-Id">
+            </div>
+        </div>
+        <div class="steps" id="step_2">
+            <H4 style="text-align: center;">Hobbies</H4>
+            <div class="s2lv1">
+                <div class="s2lv2" style="background-image: url('images/Hobbies/1.jpg'); background-size: cover;">
+                    <label class="container">Reading
+                        <input type="checkbox" id="reading" name="hobby" value="Reading">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Hobbies/2.jpg'); background-size: cover;">
+                    <label class="container">Cooking
+                        <input type="checkbox" id="cooking" name="hobby" value="Cooking">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Hobbies/3.png'); background-size: cover;">
+                    <label class="container">Coding
+                        <input type="checkbox" id="coding" name="hobby" value="Coding">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Hobbies/4.jpg'); background-size: cover;">
+                    <label class="container">Gardening
+                        <input type="checkbox" id="gardening" name="hobby" value="Gardening">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+            <div class=s2lv1>
+                <div class="s2lv2" style="background-image: url('images/Hobbies/5.jpg'); background-size: cover;">
+                    <label class="container">Painting
+                        <input type="checkbox" id="painting" name="hobby" value="Painting">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Hobbies/6.png'); background-size: cover;">
+                    <label class="container">Watching YouTube/Instagram
+                        <input type="checkbox" id="youtube_instagram" name="hobby" value="Watching YouTube/Instagram">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Hobbies/7.png'); background-size: cover;">
+                    <label class="container">Playing musical instruments
+                        <input type="checkbox" id="musical_instruments" name="hobby"
+                            value="Playing musical instruments">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Hobbies/8.jpg'); background-size: cover;">
+                    <label class="container">Photography
+                        <input type="checkbox" id="photography" name="hobby" value="Photography">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="steps" id="step_3">
+            <H4 style="text-align: center;">Interests</H4>
+            <div class="s2lv1">
+                <div class="s2lv2" style="background-image: url('images/Interests/1.jpg'); background-size: cover;">
+                    <label class="container">Traveling
+                        <input type="checkbox" id="traveling" name="interest" value="Traveling">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Interests/2.jpeg'); background-size: cover;">
+                    <label class="container">Sports
+                        <input type="checkbox" id="sports" name="interest" value="Sports">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Interests/3.jpeg'); background-size: cover;">
+                    <label class="container">Movies
+                        <input type="checkbox" id="movies" name="interest" value="Movies">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Interests/4.jpeg'); background-size: cover;">
+                    <label class="container">Music
+                        <input type="checkbox" id="music" name="interest" value="Music">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+            <div class=s2lv1>
+                <div class="s2lv2" style="background-image: url('images/Interests/5.jpeg'); background-size: cover;">
+                    <label class="container">Literature
+                        <input type="checkbox" id="literature" name="interest" value="Literature">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Interests/6.jpeg'); background-size: cover;">
+                    <label class="container">Technology
+                        <input type="checkbox" id="technology" name="interest" value="Technology">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Interests/7.jpeg'); background-size: cover;">
+                    <label class="container">Fashion
+                        <input type="checkbox" id="fashion" name="interest" value="Fashion">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="s2lv2" style="background-image: url('images/Interests/8.jpeg'); background-size: cover;">
+                    <label class="container">Art
+                        <input type="checkbox" id="art" name="interest" value="Art">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="steps" id="step_4">
+            <div>
+                <H3 style="text-align: center;">Upload Photo</H3>
+                <!-- <form id="uploadForm" enctype="multipart/form-data"> -->
+                <div class="temp_dt">
+                    <label for="photo_dt" class="image_upload">
+                        <span>Choose File</span>
+                    </label>
+                    <input type="file" name="photo" accept="image/*" id="photo_dt">
+                </div>
+                (Preferred Dimensions: 1024px x 1024px)
+                <br>
+                <button type="submit" id="submitDating">Submit</button>
+                <!-- </form> -->
+            </div>
+            <div id="uploadedImgDisplay">
+            </div>
+        </div>
+        <button id="nextDating">NEXT &gt;&gt;</button>
+        <button id="prevDating">&lt;&lt; PREV</button>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>

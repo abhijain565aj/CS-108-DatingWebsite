@@ -320,7 +320,7 @@ if (registerNowSubmit) {
 
 function dating() {
     const IITB_roll_no_dt = document.getElementById('IITB_roll_no_dt').value;
-    const student_name_dt = document.getElementById('student_name_dt').value; set
+    const student_name_dt = document.getElementById('student_name_dt').value;
     const email = document.getElementById('email').value;
     const year_of_study_dt = document.getElementById('year_of_study_dt').value;
     const age_dt = document.getElementById('age_dt').value;
@@ -1002,7 +1002,10 @@ function matching_score_and_update() {
         .then(json => {
             let maxScore = 0;
             for (let student of json) {
-                if (localStorage.getItem('match_type') === 'All') {
+                if (localStorage.getItem('filter') && !applyFilter(JSON.parse(localStorage.getItem('filter')), student)) {
+                    continue;
+                }
+                else if (localStorage.getItem('match_type') === 'All') {
                 } else if (localStorage.getItem('match_type') != student.Gender) {
                     continue;
                 }
@@ -1018,9 +1021,7 @@ function matching_score_and_update() {
                 //Interests_Score
                 let n1 = currentStudentData.Interests.length;
                 let n2 = student.Interests.length;
-                let f1 = n2 / (n1 + n2);
-                let f2 = n1 / (n2 + n1);
-                increase = (20 * f1) / n1 + (20 * f2) / n2;
+                increase = (7.5 / n1) + (7.5 / n2) + (15 / (n1 + n2));
                 for (let interest of student.Interests) {
                     if (currentStudentData.Interests.includes(interest)) {
                         score += increase;
@@ -1030,9 +1031,7 @@ function matching_score_and_update() {
 
                 n1 = currentStudentData.Hobbies.length;
                 n2 = student.Hobbies.length;
-                f1 = n2 / (n1 + n2);
-                f2 = n1 / (n2 + n1);
-                increase = (20 * f1) / n1 + (20 * f2) / n2;
+                increase = (7.5 / n1) + (7.5 / n2) + (15 / (n1 + n2));
                 for (let hobby of student.Hobbies) {
                     if (currentStudentData.Hobbies.includes(hobby)) {
                         score += increase;
@@ -1049,6 +1048,10 @@ function matching_score_and_update() {
                 if (score == maxScore) {
                     bestMatch = student;
                 }
+            }
+            if (bestMatch == null) {
+                alert('No match found according to your desired filters. Please try again with different filters.');
+                window.location.href = 'scroll_or_swipe.html';
             }
             return bestMatch;
         })
@@ -1077,6 +1080,9 @@ function matching_score_and_update() {
                     </div>
                     <div class="info_match">
                         ${bestMatch.Hobbies.join(', ')}
+                    </div>
+                    <div class="info_match">
+                        &bull; Email-id:<a href="mailto:${bestMatch.Email}">${bestMatch.Email}</a> 
                     </div>
             `
             document.getElementById('Name_match').innerText = bestMatch.Name;
